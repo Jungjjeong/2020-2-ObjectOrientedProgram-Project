@@ -1,4 +1,4 @@
-HELLO!
+Github for OOP_project
 
 COMMIT -> 변경사항을 로컬에 저장하는것.
 
