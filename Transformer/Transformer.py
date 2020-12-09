@@ -173,7 +173,7 @@ class Encoder(nn.Module):
         sinusoid_table = torch.FloatTensor(get_sinusoid_encoding_table(self.config.n_enc_seq + 1, self.config.d_hidn))
         self.pos_emb = nn.Embedding.from_pretrained(sinusoid_table, freeze=True)
 
-        self.layers = nn.ModuleList([EncoderLayer(self.config) for _ in range(self.config.n_layer)])
+        self.layers = nn.ModuleList([Encoder(self.config) for _ in range(self.config.n_layer)])
     
 
 class EncoderLoop(nn.Module):
@@ -185,7 +185,7 @@ class EncoderLoop(nn.Module):
         sinusoid_table = torch.FloatTensor(get_sinusoid_encoding_table(self.config.n_enc_seq + 1, self.config.d_hidn))
         self.pos_emb = nn.Embedding.from_pretrained(sinusoid_table, freeze=True)
 
-        self.layers = nn.ModuleList([EncoderLayer(self.config) for _ in range(self.config.n_layer)])
+        self.layers = nn.ModuleList([Encoder(self.config) for _ in range(self.config.n_layer)])
         
     def forward(self, inputs):
         
