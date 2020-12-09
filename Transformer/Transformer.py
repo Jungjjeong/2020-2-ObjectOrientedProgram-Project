@@ -1,4 +1,7 @@
 import sentencepiece as spm
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
 # vocab loading
 vocab_file = "kowiki.model"
@@ -55,9 +58,6 @@ def get_attn_decoder_mask(seq):
     subsequent_mask = subsequent_mask.triu(diagonal=1) # upper triangular part of a matrix(2-D)
     return subsequent_mask
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
 
 class ScaledDotProductAttention(nn.Module):
     def __init__(self, config):
@@ -161,10 +161,7 @@ class Encoder(nn.Module):
         
         return ffn_outputs, attn_prob
     
-    
-    
-    
-    
+   
     def __init__(self, config):
         super().__init__()
         self.config = config
