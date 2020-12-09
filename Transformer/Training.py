@@ -1,3 +1,14 @@
+import sentencepiece as spm
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import numpy as np
+import time
+from tqdm import tqdm
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+
 class MovieReviewClassification(nn.Module):
     def __init__(self, config):
         super().__init__()
@@ -18,9 +29,6 @@ class MovieReviewClassification(nn.Module):
         
         return logits, enc_self_attn_probs, dec_self_attn_probs, dec_enc_attn_probs
 
-import time
-from tqdm import tqdm
-import json
 
 class MovieReviewDataSet(torch.utils.data.Dataset):
     def __init__(self, vocab, infile):
@@ -167,8 +175,6 @@ for epoch in range(n_epoch):
     losses.append(loss)
     scores.append(score)
 
-import pandas as pd
-import matplotlib.pyplot as plt
 
 data = {
     "loss": losses,
